@@ -7,4 +7,14 @@
     <string name="txt_main"><![CDATA[Vie & Résidence]]></string>
     <string name="btn_signin">"Sign in"</string>
     <string name="btn_signup">Sign up</string>
+    <string name="title_activity_sign_in">SignIn</string>
+    <string name="img_logo">logo</string>
+    <string name="hint_password">Enter your password</string>
+    <string name="hint_email">"Enter your Email"</string>
+    <string name="txt_forgotpassword">Forgot password</string>
+    <string name="title_activity_sign_up">SignUp</string>
+    <string name="signup_title">Create Account</string>
+    <string name="hint_address">address</string>
+    <string name="hint_name">name</string>
+    <string name="hint_surname">surname</string>
 </resources>
