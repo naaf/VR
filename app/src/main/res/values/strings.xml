@@ -17,4 +17,17 @@
     <string name="hint_address">address</string>
     <string name="hint_name">name</string>
     <string name="hint_surname">surname</string>
+    <string name="prompt_type">Vous êtes</string>
+    <string-array name="arrays_type">
+        <item>propriétaire</item>
+        <item>locataire</item>
+        <item>autre</item>
+    </string-array>
+    <string name="prompt_roles">Fonctionnalité dans la copropriété</string>
+    <string-array name="arrays_roles">
+        <item>gardien</item>
+        <item>président de la résidence</item>
+        <item>jardinier</item>
+        <item>autre</item>
+    </string-array>
 </resources>
