@@ -30,4 +30,17 @@
         <item>jardinier</item>
         <item>autre</item>
     </string-array>
+    <string name="title_activity_basic_tool_bar">BasicToolBar</string>
+
+    <!-- menu toolBar -->
+    <string name="action_depot">Depôts</string>
+    <string name="action_document">Docments</string>
+    <string name="action_message">Message</string>
+    <string name="action_actualite">Actualité</string>
+    <string name="title_activity_news_feed">NewsFeed</string>
+    <string name="title_activity_box_message">BoxMessage</string>
+    <string name="title_activity_deposit">Deposit</string>
+    <string name="title_activity_send_message">SendMessage</string>
+    <string name="title_activity_contact">Contact</string>
+
 </resources>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/layout_list_object"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin">
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal"
+        android:id="@+id/layout_object_img">
+
+        <ImageView
+            android:id="@+id/img1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="16dip"
+            android:src="@drawable/logo"
+            android:maxHeight="100px"
+            android:maxWidth="250px"
+            android:minHeight="100px"
+            android:minWidth="250px"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"/>
+
+        <ImageView
+            android:id="@+id/img2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="16dip"
+            android:src="@drawable/logo"
+            android:maxHeight="100px"
+            android:maxWidth="250px"
+            android:minHeight="250px"
+            android:minWidth="250px"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+           />
+
+        <ImageView
+            android:id="@+id/img3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="16dip"
+            android:src="@drawable/logo"
+            android:maxHeight="100px"
+            android:maxWidth="250px"
+            android:minHeight="250px"
+            android:minWidth="250px"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:id="@+id/layout_object_text">
+
+        <TextView
+            android:id="@+id/titre"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal"
+        android:id="@+id/layout_object_footer"
+        android:layout_marginTop="10dp"
+        android:padding="0dp"
+        android:layout_marginBottom="0dp">
+
+
+
+    <ImageButton
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:id="@+id/retrieveObject"
+        android:src="@drawable/capture_r"
+        android:clickable="true"
+        android:background="?android:selectableItemBackground"
+        />
+    <TextView
+        android:id="@+id/recuperation"
+        android:layout_width="fill_parent"
+        android:text="récupérer"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/retrieveObject"
+        android:layout_centerVertical="true" />
+    </RelativeLayout>
+
+
+</LinearLayout>

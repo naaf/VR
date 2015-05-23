@@ -4,7 +4,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
@@ -23,6 +23,30 @@
         <activity
             android:name=".SignUp"
             android:label="@string/title_activity_sign_up" >
+        </activity>
+        <activity
+            android:name=".BasicToolBar"
+            android:label="@string/title_activity_basic_tool_bar" >
+        </activity>
+        <activity
+            android:name=".NewsFeed"
+            android:label="@string/title_activity_news_feed" >
+        </activity>
+        <activity
+            android:name=".BoxMessage"
+            android:label="@string/title_activity_box_message" >
+        </activity>
+        <activity
+            android:name=".Deposit"
+            android:label="@string/title_activity_deposit" >
+        </activity>
+        <activity
+            android:name=".SendMessage"
+            android:label="@string/title_activity_send_message" >
+        </activity>
+        <activity
+            android:name=".Contact"
+            android:label="@string/title_activity_contact" >
         </activity>
     </application>
 
