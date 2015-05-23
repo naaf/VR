@@ -67,7 +67,7 @@
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPostalAddress"
+        android:inputType="textPostalAddress|text"
         android:ems="10"
         android:id="@+id/field_signup_address"
         android:layout_below="@+id/field_signup_password"
@@ -102,7 +102,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPostalAddress"
+        android:inputType="number"
         android:ems="10"
         android:id="@+id/field_signup_codepostal"
         android:layout_below="@+id/field_signup_address"
