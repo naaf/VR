@@ -10,7 +10,7 @@
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editText"
+        android:id="@+id/field_contacts"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:text="@string/signup_title"
@@ -22,7 +22,7 @@
         android:inputType="textPersonName"
         android:ems="10"
         android:id="@+id/field_signup_name"
-        android:layout_below="@+id/editText"
+        android:layout_below="@+id/field_contacts"
         android:layout_alignParentStart="true"
         android:layout_marginStart="26dp"
         android:layout_marginTop="10dp"
@@ -120,6 +120,17 @@
         android:layout_marginStart="15dp"
         android:hint="City"
         android:layout_alignParentEnd="true" />
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/signup_error"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:textColor="#e30000"
+        android:textStyle="bold"
+        android:padding="10dip"
+        android:layout_below="@+id/spinner_activity"
+        android:layout_marginBottom="5dip" />
 
     <Button
         android:id="@+id/btn_signup"
@@ -133,6 +144,7 @@
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp"
         android:layout_marginBottom="0dp"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:onClick="inscription" />
 
 </RelativeLayout>

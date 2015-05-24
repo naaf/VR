@@ -32,7 +32,7 @@ public class MainActivity extends Activity {
                 Toast.makeText(MainActivity.this, "RESULT_KO", Toast.LENGTH_LONG).show();
                 //verification de mot de passe et de login
 
-                Intent intent = new Intent(MainActivity.this, NewsFeed.class);
+                Intent intent = new Intent(MainActivity.this, SignIn.class);
                 startActivity(intent);
             }
         });

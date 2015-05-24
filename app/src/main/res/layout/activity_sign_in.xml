@@ -37,20 +37,21 @@
             android:layout_alignParentEnd="true"
             android:layout_below="@+id/linearLayout">
 
-            <TextView android:id="@+id/link_forgotpassword"
+            <TextView android:id="@+id/link_signup"
                 android:layout_width="159dp"
                 android:layout_height="wrap_content"
-                android:text="@string/txt_forgotpassword"
+                android:text="@string/title_activity_sign_up"
                 android:textSize="18dip"
                 android:textColor="#0b84aa"
                 android:clickable="true"
                 android:layout_gravity="left"
-                android:gravity="left"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="10dp" />
+                android:layout_marginTop="10dp"
+                android:gravity="right"
+                android:layout_marginRight="10dp" />
 
             <TextView
-                android:id="@+id/link_signup"
+                android:id="@+id/link_forgotpassword"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/txt_forgotpassword"
@@ -92,13 +93,24 @@
                 android:id="@+id/field_signin_password"
                 android:hint="@string/hint_password" />
             <!-- Login button -->
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/login_error"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:textColor="#e30000"
+                android:textStyle="bold"
+                android:padding="10dip" />
+
             <Button android:id="@+id/btnLogin"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dip"
+                android:layout_marginTop="25dip"
                 android:text="@string/btn_signin"
                 android:textColor="#ffffff"
-                android:background="#ff0cbcd3" />
+                android:background="#ff0cbcd3"
+                android:onClick="login" />
             <!-- Link to Registration Screen -->
 
         </LinearLayout>

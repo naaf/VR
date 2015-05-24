@@ -19,7 +19,7 @@
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editText"
+        android:id="@+id/field_contacts"
         android:layout_below="@+id/my_action_bar_toolbar_deux"
         android:layout_alignParentStart="true"
         android:layout_marginTop="54dp"
@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btn_addContact"
-        android:layout_alignBottom="@+id/editText"
+        android:layout_alignBottom="@+id/field_contacts"
         android:layout_alignParentEnd="true"
         android:src="@drawable/ic_action_add_person"
         android:layout_margin="0dp" />
@@ -41,26 +41,27 @@
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editText2"
+        android:id="@+id/sujet_message"
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp"
         android:singleLine="true"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="10dp"
-        android:layout_below="@+id/editText"
+        android:layout_below="@+id/field_contacts"
         android:layout_marginTop="20dp"
-        android:padding="8dp" />
+        android:padding="8dp"
+        android:hint="Sujet" />
 
     <EditText
         android:layout_width="fill_parent"
-        android:layout_height="150dp"
-        android:inputType="textMultiLine"
+        android:layout_height="wrap_content"
         android:ems="10"
-        android:id="@+id/editText3"
+        android:id="@+id/corp_message"
+        android:padding="20dp"
+        android:inputType="text|textMultiLine"
+        android:maxLines="5"
+        android:layout_below="@+id/sujet_message"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/editText2"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="10dp"
-        android:padding="8dp" />
+        android:hint="message" />
 
 </RelativeLayout>

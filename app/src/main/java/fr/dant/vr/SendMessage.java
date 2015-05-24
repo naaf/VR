@@ -8,11 +8,19 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import fr.dant.vr.tools.Utility;
+
 
 public class SendMessage extends ActionBarActivity {
+    private final String EXTRA_CONTACT = "contactReply";
+    private final String EXTRA_CONTACT_SELECT = "contactSelect";
+    private final int RESULT_SELECTION = 12;
+
+    private EditText fieldContacts = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,22 +29,45 @@ public class SendMessage extends ActionBarActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.my_action_bar_toolbar_deux);
         toolbar.setTitle("VR");
         setSupportActionBar(toolbar);
+        Intent intent = getIntent();
+        fr.dant.vr.entity.Contact contact = intent.getParcelableExtra(EXTRA_CONTACT);
+        fieldContacts = (EditText) findViewById(R.id.field_contacts);
+        if (contact != null) {
+            fieldContacts.setText(contact.getNom());
+        }
 
         // handle button
         final ImageButton addObject = (ImageButton) findViewById(R.id.btn_addContact);
         addObject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.v("SendMessage", "send");
-                Toast.makeText(SendMessage.this, "Send", Toast.LENGTH_LONG).show();
-                //passe des info pour
-
                 Intent intent = new Intent(SendMessage.this, Contact.class);
-                startActivity(intent);
-
+                startActivityForResult(intent, RESULT_SELECTION);
             }
         });
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RESULT_SELECTION && data != null) {
+            Log.v("onActivityResult", " Selection contact");
+            fr.dant.vr.entity.Contact contact = data.getParcelableExtra(EXTRA_CONTACT_SELECT);
+
+            if (contact != null) {
+
+                if (Utility.isNotNull(fieldContacts.getText().toString())) {
+                    fieldContacts.setText(fieldContacts.getText().toString() +","+contact.getNom());
+                } else {
+                    fieldContacts.setText(contact.getNom());
+                }
+            }
+        } else {
+            Log.v("onActivityResult", "Cancel Selection contact");
+        }
+    }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -51,7 +82,7 @@ public class SendMessage extends ActionBarActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
 
-        if(item.getItemId() == R.id.action_send){
+        if (item.getItemId() == R.id.action_send) {
             //envoi de message
             Toast.makeText(SendMessage.this, "envois",
                     Toast.LENGTH_SHORT).show();

@@ -1,9 +1,15 @@
 package fr.dant.vr;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class SignIn extends ActionBarActivity {
@@ -12,6 +18,20 @@ public class SignIn extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
+
+
+        TextView signUp = (TextView) findViewById(R.id.link_signup);
+        signUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.v("MainActivity", "Result_KO");
+                Toast.makeText(SignIn.this, "RESULT_KO", Toast.LENGTH_LONG).show();
+                //verification de validation de form
+                Intent signUpIntent = new Intent(getApplicationContext(),SignUp.class);
+                startActivity(signUpIntent);
+            }
+        });
+
     }
 
     @Override
@@ -33,4 +53,16 @@ public class SignIn extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+    //
+    public  void login(View view){
+
+        Log.v("MainActivity", "Result_KO");
+        Toast.makeText(getApplicationContext(), "RESULT_KO", Toast.LENGTH_LONG).show();
+        //verification de validation de form
+        Intent intent = new Intent(getApplicationContext(), NewsFeed.class);
+        startActivity(intent);
+    }
+    //private void invokeWS(RequestParams params) {}
 }

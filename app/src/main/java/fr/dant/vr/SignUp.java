@@ -17,20 +17,6 @@ public class SignUp extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-
-        Button btn1 = (Button) findViewById(R.id.btn_signup);
-
-        btn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.v("MainActivity", "Result_KO");
-                Toast.makeText(SignUp.this, "RESULT_KO", Toast.LENGTH_LONG).show();
-                //verification de validation de form
-
-                Intent intent = new Intent(SignUp.this, NewsFeed.class);
-                startActivity(intent);
-            }
-        });
     }
 
     @Override
@@ -51,4 +37,15 @@ public class SignUp extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    //
+    public  void inscription(View view){
+
+        Log.v("MainActivity", "Result_KO");
+        Toast.makeText(getApplicationContext(), "RESULT_KO", Toast.LENGTH_LONG).show();
+        //verification de validation de form
+        Intent intent = new Intent(getApplicationContext(), NewsFeed.class);
+        startActivity(intent);
+    }
+    //private void invokeWS(RequestParams params) {}
 }

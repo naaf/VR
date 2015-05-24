@@ -26,6 +26,7 @@ public class MessageListAdopter extends ArrayAdapter<MessageRecu> {
     private Context context;
     private int viewRes;
     private Resources res;
+    private final String EXTRA_CONTACT = "contactReply";
 
     public MessageListAdopter(Context context, int textViewResourceId, ArrayList<MessageRecu> messageRecus) {
         super(context, textViewResourceId, messageRecus);
@@ -63,13 +64,17 @@ public class MessageListAdopter extends ArrayAdapter<MessageRecu> {
 
             final ImageButton btnReplay = (ImageButton) view.findViewById(R.id.btnReplay);
             final ImageButton btnRemove = (ImageButton) view.findViewById(R.id.btnRemove);
+
+            btnReplay.setTag(position);
+
             btnReplay.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Log.v("BoxMessage", "Replay");
-                    Toast.makeText(context, "Replay", Toast.LENGTH_LONG).show();
+                    int position = (Integer) v.getTag();
                     //passe des info pour l'envois de message
                     Intent intent = new Intent(context, SendMessage.class);
+                    intent.putExtra(EXTRA_CONTACT, getItem(position).getContact());
                     context.startActivity(intent);
                 }
             });

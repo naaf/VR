@@ -1,11 +1,16 @@
 package fr.dant.vr;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -14,6 +19,8 @@ import fr.dant.vr.entity.ObjectOffert;
 
 public class Contact extends ActionBarActivity {
 
+    private final int RESULT_SELECTION = 12;
+    private final String EXTRA_CONTACT_SELECT = "contactSelect";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +37,17 @@ public class Contact extends ActionBarActivity {
         ContactAdopter adapter = new ContactAdopter(this, R.layout.list_contact, contacts);
         final ListView list = (ListView) findViewById(R.id.list_contact);
         list.setAdapter(adapter);
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String selectedFromList =  list.getItemAtPosition(position).toString();
+                Intent resultIntent = new Intent();
+                resultIntent.putExtra(EXTRA_CONTACT_SELECT,(fr.dant.vr.entity.Contact)list.getItemAtPosition(position));
+                setResult(RESULT_SELECTION, resultIntent);
+                finish();
+            }
+        });
     }
 
     @Override
@@ -44,12 +62,6 @@ public class Contact extends ActionBarActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }

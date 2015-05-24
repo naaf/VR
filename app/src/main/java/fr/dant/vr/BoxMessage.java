@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -46,15 +47,11 @@ public class BoxMessage extends BasicToolBar {
             @Override
             public void onClick(View v) {
                 Log.v("BoxMessage", "newMessage");
-                Toast.makeText(BoxMessage.this, "RESULT_KO", Toast.LENGTH_LONG).show();
                 //passe des info pour l'envois de message
                 Intent intent = new Intent(BoxMessage.this, SendMessage.class);
                 startActivity(intent);
             }
         });
-/*
-
-        */
     }
 
     @Override

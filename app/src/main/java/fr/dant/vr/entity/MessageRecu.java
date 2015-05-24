@@ -7,12 +7,13 @@ import java.util.Date;
  */
 public class MessageRecu {
     private String titre;
-    private String nom;
     private Date date;
     private String corp;
-    private String email;
+    private Contact contact;
+
 
     public MessageRecu() {
+        contact = new Contact();
     }
 
     public String getTitre() {
@@ -24,11 +25,11 @@ public class MessageRecu {
     }
 
     public String getNom() {
-        return nom;
+        return contact.getNom();
     }
 
     public void setNom(String nom) {
-        this.nom = nom;
+        contact.setNom(nom);
     }
 
     public Date getDate() {
@@ -48,10 +49,36 @@ public class MessageRecu {
     }
 
     public String getEmail() {
-        return email;
+        return contact.getEmail();
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        contact.setEmail(email);
+    }
+
+    public String getMobile() {
+        return contact.getMobile();
+    }
+
+    public void setMobile(String mobile) {
+        contact.setMobile(mobile);
+    }
+
+    public Contact getContact() {
+        return contact;
+    }
+
+    public void setContact(Contact contact) {
+        this.contact = contact;
+    }
+
+    @Override
+    public String toString() {
+        return "MessageRecu{" +
+                "titre='" + titre + '\'' +
+                ", date=" + date +
+                ", corp='" + corp + '\'' +
+                ", contact=" + contact +
+                '}';
     }
 }
