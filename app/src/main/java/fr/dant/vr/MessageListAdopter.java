@@ -66,11 +66,12 @@ public class MessageListAdopter extends ArrayAdapter<MessageRecu> {
             final ImageButton btnRemove = (ImageButton) view.findViewById(R.id.btnRemove);
 
             btnReplay.setTag(position);
+            btnRemove.setTag(position);
 
             btnReplay.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.v("BoxMessage", "Replay");
+                    Log.v("MessageListAdopter", "Replay");
                     int position = (Integer) v.getTag();
                     //passe des info pour l'envois de message
                     Intent intent = new Intent(context, SendMessage.class);
@@ -82,9 +83,11 @@ public class MessageListAdopter extends ArrayAdapter<MessageRecu> {
             btnRemove.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.v("BoxMessage", "Remove");
+                    Log.v("MessageListAdopter", "Remove");
                     Toast.makeText(context, "Remove", Toast.LENGTH_LONG).show();
-                    //passe des info pour l'envois de message
+                    //envois de la commande de suppression au serveur
+                    int position = (Integer) v.getTag();
+                    remove(getItem(position));
                 }
             });
 
