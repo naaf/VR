@@ -49,8 +49,10 @@ public class BasicToolBar extends ActionBarActivity {
                 }
                 break;
             case R.id.action_document : msg = "action_document";
-                Toast.makeText(BasicToolBar.this, msg,
-                        Toast.LENGTH_SHORT).show();
+                if(!(this instanceof Deposit)) {
+                    intent = new Intent(this, Apropos.class);
+                    startActivity(intent);
+                }
                 break;
             case R.id.action_depot :
                 if(!(this instanceof Deposit)) {
