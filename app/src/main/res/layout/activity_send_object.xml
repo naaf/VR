@@ -1,0 +1,79 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context="fr.dant.vr.SendObject"
+    android:padding="0dp" >
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_sendObject"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="@color/color1"
+        android:minHeight="90dp">
+    </android.support.v7.widget.Toolbar>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Donnez un objet"
+        android:id="@+id/textView"
+        android:layout_gravity="center"
+        android:textStyle="bold|italic"
+        android:layout_margin="10dp"
+        android:capitalize="words"
+        android:textSize="40dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="charge Image"
+        android:id="@+id/charge_image"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_margin="0dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/img1"
+        android:layout_below="@+id/toolbar_sendObject"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:maxHeight="150dp"
+        android:maxWidth="400dp"
+        android:adjustViewBounds="true"
+        android:nestedScrollingEnabled="false"
+        android:scaleType="fitCenter" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/field_titreObjet"
+        android:hint="nom ou tye de l&apos;objet"
+        android:layout_margin="10dp"
+        android:singleLine="true" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/field_descriptionObjet"
+        android:hint="description de l&apos;objet"
+        android:layout_margin="10dp"
+        android:nestedScrollingEnabled="true"
+        android:maxLines="3" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Donnez"
+        android:id="@+id/btn_sendObjet"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:hint="Donnez" />
+
+</LinearLayout>

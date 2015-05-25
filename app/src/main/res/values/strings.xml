@@ -42,5 +42,6 @@
     <string name="title_activity_deposit">Deposit</string>
     <string name="title_activity_send_message">SendMessage</string>
     <string name="title_activity_contact">Contact</string>
+    <string name="title_activity_send_object">SendObject</string>
 
 </resources>

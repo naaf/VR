@@ -1,6 +1,7 @@
 package fr.dant.vr;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -12,12 +13,21 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import fr.dant.vr.entity.ObjectOffert;
+import fr.dant.vr.tools.Utility;
 
 
 public class Deposit extends BasicToolBar {
+
+    private final int RESULT_OFFRE_OBJECT = 32;
+    private final String EXTRA_OBJET_OFFERT = "objetOffert";
+
+    private ObjectOffertAdopter adapter;
+    private ArrayList<ObjectOffert> objectOfferts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,13 +38,15 @@ public class Deposit extends BasicToolBar {
         toolbar.setTitle("VR");
         setSupportActionBar(toolbar);
 
-        ArrayList<ObjectOffert> objectOfferts = new ArrayList<ObjectOffert>();
+        objectOfferts = new ArrayList<ObjectOffert>();
 
         initList(objectOfferts);
 
-        ObjectOffertAdopter adapter = new ObjectOffertAdopter(this, R.layout.list_object, objectOfferts);
+        adapter = new ObjectOffertAdopter(this, R.layout.list_object, objectOfferts);
         final ListView list = (ListView) findViewById(R.id.list_object);
         list.setAdapter(adapter);
+
+
 
         // handle button
         final ImageButton addObject = (ImageButton) findViewById(R.id.objectAdd);
@@ -43,13 +55,29 @@ public class Deposit extends BasicToolBar {
             public void onClick(View v) {
                 Log.v("Deposit", "addObject");
                 Toast.makeText(Deposit.this, "addObject", Toast.LENGTH_LONG).show();
+
                 //passe des info pour
-
-                //Intent intent = new Intent(Deposit.this, SignUp.class);
-                //startActivity(intent);
-
+                Intent intent = new Intent(getApplicationContext(), SendObject.class);
+                startActivityForResult(intent, RESULT_OFFRE_OBJECT);
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RESULT_OFFRE_OBJECT && data != null) {
+            Log.v("onActivityResult", " RESULT_OFFRE_OBJECT OK");
+            ObjectOffert obj = data.getParcelableExtra(EXTRA_OBJET_OFFERT);
+            Toast.makeText(Deposit.this, obj.toString(), Toast.LENGTH_LONG).show();
+            if(Global.img != null) {
+                obj.setBitmap(Global.img);
+                addItems(obj);
+            }
+
+        } else {
+            Log.v("onActivityResult", "RESULT_OFFRE_OBJECT NON");
+        }
     }
 
     @Override
@@ -70,7 +98,7 @@ public class Deposit extends BasicToolBar {
     private void initList(ArrayList<ObjectOffert> androidList) {
         ObjectOffert announce1 = new ObjectOffert();
         announce1.setTitre("Ashraf");
-        announce1.setDescription("Restabat ut Caesar post haec properaret accitus et abstergendae causa suspicionis sororem suam, eius uxorem, Constantius ad se tandem desideratam venire multis fictisque blanditiis hortabatur. quae licet ambigeret metuens saepe cruentum, spe tamen quod eum lenire poterit ut germanum profecta, cum Bithyniam introisset, in statione quae Caenos Gallicanos appellatur, absumpta est vi febrium repentina. cuius post obitum maritus contemplans cecidisse fiduciam qua se fultum existimabat, anxia cogitatione, quid moliretur haerebat.");
+        announce1.setDescription("voila un test de element 1 ");
 
         androidList.add(announce1);
 
@@ -84,4 +112,27 @@ public class Deposit extends BasicToolBar {
         announce3.setDescription("voila un test de element 3");
         androidList.add(announce3);
     }
+    public static byte[] convertBitmapToByteArray(Bitmap bitmap) {
+        if (bitmap == null) {
+            return null;
+        } else {
+            byte[] b = null;
+            try {
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.PNG, 0, byteArrayOutputStream);
+                b = byteArrayOutputStream.toByteArray();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return b;
+        }
+    }
+    public static class Global { static Bitmap img; }
+
+    public void addItems(ObjectOffert obj) {
+        adapter.add(obj);
+        adapter.notifyDataSetChanged();
+        Log.v("addItems", objectOfferts.toString());
+    }
+
 }

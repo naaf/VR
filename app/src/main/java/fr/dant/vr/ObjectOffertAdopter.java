@@ -17,6 +17,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import fr.dant.vr.entity.ObjectOffert;
+import fr.dant.vr.tools.Utility;
 
 /**
  * Created by nasser on 20/05/2015.
@@ -26,6 +27,9 @@ public class ObjectOffertAdopter extends ArrayAdapter<ObjectOffert> {
     private Context context;
     private int viewRes;
     private Resources res;
+
+    private static final int HEIGHT = 120;
+    private static final int WIDTH = 150;
 
     public ObjectOffertAdopter(Context context, int textViewResourceId, ArrayList<ObjectOffert> objectOfferts) {
         super(context, textViewResourceId, objectOfferts);
@@ -38,50 +42,79 @@ public class ObjectOffertAdopter extends ArrayAdapter<ObjectOffert> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = convertView;
+        final ViewHolder holder;
         if (view == null) {
             LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = layoutInflater.inflate(viewRes, parent, false);
+            holder = new ViewHolder();
+            holder.titre = (TextView)view.findViewById(R.id.objetTitre);
+            holder.description = (TextView) view.findViewById(R.id.objetDescription);
+            holder.disponibilite = (TextView) view.findViewById(R.id.objetDisponibilite);
+            holder.img1 = (ImageView) view.findViewById(R.id.img1);
+            holder.retrieveObject = (ImageButton) view.findViewById(R.id.retrieveObject);
+            holder.retrieveObject.setTag(position);
+            view.setTag(holder);
+
+        }
+        else {
+            holder = (ViewHolder) view.getTag();
         }
         final ObjectOffert objectOffert = objectOfferts.get(position);
         if (objectOffert != null) {
-            final TextView titre = (TextView) view.findViewById(R.id.titre);
-            final TextView description = (TextView) view.findViewById(R.id.description);
-            final ImageView img1 = (ImageView) view.findViewById(R.id.img1);
-            final ImageView img2 = (ImageView) view.findViewById(R.id.img2);
-            final ImageView img3 = (ImageView) view.findViewById(R.id.img3);
 
-            titre.setText(objectOffert.getTitre());
-            description.setText(objectOffert.getDescription());
-            Bitmap bmp = null;
-            if(objectOffert.getImage1() != null) {
-                bmp = BitmapFactory.decodeByteArray(objectOffert.getImage1(), 0, objectOffert.getImage1().length);
-                img1.setImageBitmap(bmp);
+
+            if (Utility.isNotNull(objectOffert.getTitre())) {
+                holder.titre.setText(objectOffert.getTitre());
             }
-            if(objectOffert.getImage2() != null) {
-                bmp = BitmapFactory.decodeByteArray(objectOffert.getImage2(), 0, objectOffert.getImage2().length);
-                img2.setImageBitmap(bmp);
+
+            if (Utility.isNotNull(objectOffert.getDisponibilite())) {
+                holder.disponibilite.setText(objectOffert.getDisponibilite());
             }
-            if(objectOffert.getImage3() != null) {
-                bmp = BitmapFactory.decodeByteArray(objectOffert.getImage3(), 0, objectOffert.getImage3().length);
-                img3.setImageBitmap(bmp);
+            if (Utility.isNotNull(objectOffert.getDescription())) {
+                holder.description.setText(objectOffert.getDescription());
+            }
+
+            Bitmap bitmap = objectOffert.getBitmap();
+            if (bitmap != null) {
+                int height = bitmap.getHeight(), width = bitmap.getWidth();
+                Log.e("dimensioin", " h" + height + "w " + width);
+                if (height > 1280 && width > 960) {
+                    holder.img1.setImageBitmap(Bitmap.createScaledBitmap(bitmap, WIDTH, HEIGHT, true));
+                }else{
+                    holder.img1.setImageBitmap(bitmap);
+                }
+            }
+            else if(objectOffert.getImage1() != null){
+                bitmap = BitmapFactory.decodeByteArray(objectOffert.getImage1(), 0, objectOffert.getImage1().length);
+                holder.img1.setImageBitmap(bitmap);
             }
 
             //handle button
-            final ImageButton addObject = (ImageButton) view.findViewById(R.id.retrieveObject);
-            addObject.setOnClickListener(new View.OnClickListener() {
+            holder.retrieveObject.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Log.v("ObjectOffertAdopter", "RecupererObject");
-                    Toast.makeText(context, "RecupererObject", Toast.LENGTH_LONG).show();
-                    //passe des info pour
+                    Toast.makeText(context, "Recuperer Object", Toast.LENGTH_LONG).show();
 
+                    int position = (Integer) v.getTag();
+                    ObjectOffert obj = getItem(position);
+                    obj.setDisponibilite("Pris");
+                    notifyDataSetChanged();
+                    //passe des info pour
                     //Intent intent = new Intent(Deposit.this, SignUp.class);
                     //startActivity(intent);
-
                 }
             });
         }
         return view;
+    }
+
+    static class ViewHolder {
+        TextView titre ;
+        TextView description ;
+        TextView disponibilite;
+        ImageView img1;
+        ImageButton retrieveObject;
     }
 
 }

@@ -37,7 +37,7 @@ public class SendMessage extends ActionBarActivity {
         }
 
         // handle button
-        final ImageButton addObject = (ImageButton) findViewById(R.id.btn_addContact);
+        ImageButton addObject = (ImageButton) findViewById(R.id.btn_addContact);
         addObject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
