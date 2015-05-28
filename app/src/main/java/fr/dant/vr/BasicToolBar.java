@@ -49,7 +49,7 @@ public class BasicToolBar extends ActionBarActivity {
                 }
                 break;
             case R.id.action_document : msg = "action_document";
-                if(!(this instanceof Deposit)) {
+                if(!(this instanceof Apropos)) {
                     intent = new Intent(this, Apropos.class);
                     startActivity(intent);
                 }

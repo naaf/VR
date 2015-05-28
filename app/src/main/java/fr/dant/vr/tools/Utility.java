@@ -2,6 +2,9 @@ package fr.dant.vr.tools;
 
 
 
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -50,5 +53,26 @@ public class Utility {
 	 */
 	public static boolean isNotNull(String txt){
 		return txt!=null && txt.trim().length()>0 ? true: false;
+	}
+
+	public static Date stringToDate(String date, String format) throws Exception
+	{
+		Date d = null;
+
+		try
+		{
+			SimpleDateFormat formatter = new SimpleDateFormat(format);
+			d = formatter.parse(date);
+			if (!formatter.format(d).equals(date))
+			{
+				throw new Exception("error format date");
+			}
+
+		}
+		catch (ParseException e)
+		{
+			throw e;
+		}
+		return d;
 	}
 }

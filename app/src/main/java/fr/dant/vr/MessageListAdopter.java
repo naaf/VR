@@ -12,11 +12,21 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
+import org.apache.http.Header;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import fr.dant.vr.entity.MessageRecu;
+import fr.dant.vr.entity.User;
+import fr.dant.vr.ws.RestClient;
 
 /**
  * Created by nasser on 20/05/2015.
@@ -55,8 +65,9 @@ public class MessageListAdopter extends ArrayAdapter<MessageRecu> {
 
             nom.setText(announceNom);
             DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-
-            date.setText(dateFormat.format(messageRecu.getDate()).toString());
+            if(messageRecu.getDate() != null) {
+                date.setText(dateFormat.format(messageRecu.getDate()).toString());
+            }
             titre.setText(messageRecu.getTitre());
             corp.setText(messageRecu.getCorp());
 
@@ -84,16 +95,45 @@ public class MessageListAdopter extends ArrayAdapter<MessageRecu> {
                 @Override
                 public void onClick(View v) {
                     Log.v("MessageListAdopter", "Remove");
-                    Toast.makeText(context, "Remove", Toast.LENGTH_LONG).show();
+
                     //envois de la commande de suppression au serveur
                     int position = (Integer) v.getTag();
+                    Log.e("Remove :",position + ", " );
+                    Toast.makeText(context, "Remove :" +position , Toast.LENGTH_LONG).show();
+                    RequestParams params = new RequestParams();
+                    params.put("id", getItem(position).getId());
                     remove(getItem(position));
+                    invokeWS(params);
+
                 }
             });
 
         }
         return view;
     }
+
+    private void invokeWS(RequestParams params) {
+
+        RestClient.getClient().get(RestClient.getAbsoluteUrl("/messages/delete"), params, new JsonHttpResponseHandler() {
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject body) {
+                super.onSuccess(statusCode, headers, body);
+                Toast.makeText(context, "onSuccess:" + statusCode, Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                super.onFailure(statusCode, headers, responseString, throwable);
+                //prgDialog.dismiss();
+
+                Log.v("BoxMessage", "onFailure");
+                Toast.makeText(context, "onFailure :" + statusCode, Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+
 
 
 }

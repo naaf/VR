@@ -3,6 +3,11 @@ package fr.dant.vr.entity;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.util.ArrayList;
+
 /**
  * Created by nasser on 20/05/2015.
  */
@@ -10,19 +15,30 @@ public class Contact  implements Parcelable {
     private String nom;
     private String email;
     private String mobile;
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public Contact() {
     }
 
-    public Contact(String nom, String email, String mobile) {
+    public Contact(String nom, String email, String mobile, int id) {
         this.nom = nom;
         this.email = email;
         this.mobile = mobile;
+        this.id = id;
     }
     public Contact(Parcel source) {
         this.nom = source.readString();
         this.email = source.readString();
         this.mobile = source.readString();
+        this.id = source.readInt();
     }
 
     public String getNom() {
@@ -60,6 +76,7 @@ public class Contact  implements Parcelable {
         dest.writeString(nom);
         dest.writeString(email);
         dest.writeString(mobile);
+        dest.writeInt(id);
     }
     public static final Parcelable.Creator<Contact> CREATOR = new Parcelable.Creator<Contact>() {
 
@@ -81,5 +98,27 @@ public class Contact  implements Parcelable {
                 ", email='" + email + '\'' +
                 ", mobile='" + mobile + '\'' +
                 '}';
+    }
+
+    public static ArrayList<Contact> fromJson(JSONArray jsonArray) {
+        ArrayList<Contact> messageRecus = new ArrayList<Contact>();
+        try {
+            for(int i=0 ; i < jsonArray.length(); i++) {
+                Contact msg = new Contact();
+                // Deserialize json into object fields
+                msg.nom = jsonArray.getJSONObject(i).getString("nom");
+                msg.email = jsonArray.getJSONObject(i).getString("email");
+                msg.id = jsonArray.getJSONObject(i).getInt("id");
+
+                messageRecus.add(msg);
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return messageRecus;
     }
 }

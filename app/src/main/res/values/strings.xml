@@ -19,16 +19,15 @@
     <string name="hint_surname">surname</string>
     <string name="prompt_type">Vous êtes</string>
     <string-array name="arrays_type">
-        <item>propriétaire</item>
-        <item>locataire</item>
-        <item>autre</item>
+        <item>PROPRIETAIRE</item>
+        <item>LOCATAIRE</item>
+        <item>AUTRE</item>
     </string-array>
     <string name="prompt_roles">Fonctionnalité dans la copropriété</string>
     <string-array name="arrays_roles">
-        <item>gardien</item>
-        <item>président de la résidence</item>
-        <item>jardinier</item>
-        <item>autre</item>
+        <item>GARDIEN</item>
+        <item>PRESIDENT_COPROPRIETE</item>
+        <item>AUTRE</item>
     </string-array>
     <string name="title_activity_basic_tool_bar">BasicToolBar</string>
 
